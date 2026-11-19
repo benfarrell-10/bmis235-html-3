@@ -116,10 +116,38 @@
   transition: border-color 0.2s, transform 0.2s;
 }
 
+
+/* Highlight the player leading the selected category */
 .showcase .blazers-card.winner {
-  border: 2px solid #2b5d8c;
-  background: #f0f6fb;
+  background-color: #2b5d8c !important;
+  border: 2px solid #2b5d8c !important;
+  color: #ffffff !important;
   transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(43, 93, 140, 0.25);
+}
+
+/* Make the leader's text white */
+.showcase .blazers-card.winner .blazers-name,
+.showcase .blazers-card.winner .blazers-years,
+.showcase .blazers-card.winner .blazers-stat,
+.showcase .blazers-card.winner .blazers-stat-label,
+.showcase .blazers-card.winner .blazers-detail {
+  color: #ffffff !important;
+}
+
+/* Reverse the bar colors for the leader */
+.showcase .blazers-card.winner .blazers-bar-track {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.showcase .blazers-card.winner .blazers-bar {
+  background-color: #ffffff;
+}
+
+/* Make the jersey number stand out */
+.showcase .blazers-card.winner .blazers-number {
+  background-color: #ffffff;
+  color: #2b5d8c;
 }
 
 .showcase .blazers-number {
