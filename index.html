@@ -36,7 +36,371 @@
      This box is empty on purpose. In Part 7 you paste an interactive
      graphic BETWEEN the opening <div> and the closing </div> below.
      ===================================================================== -->
-<div class="showcase"></div>
+<div>
+<!-- CSS: Styles the responsive Blazers comparison graphic -->
+<style>
+.showcase {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #2b2b2b;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.showcase * {
+  box-sizing: border-box;
+}
+
+.showcase .blazers-widget {
+  background: #f7f8fa;
+  border: 1px solid #e0e4e8;
+  border-radius: 14px;
+  padding: 18px;
+  width: 100%;
+}
+
+.showcase .blazers-heading {
+  text-align: center;
+  font-size: clamp(19px, 3vw, 28px);
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.showcase .blazers-subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 12px;
+  margin-bottom: 17px;
+}
+
+.showcase .blazers-controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 17px;
+}
+
+.showcase .blazers-btn {
+  font-family: inherit;
+  font-size: 12px;
+  padding: 8px 13px;
+  border: 1px solid #ccd5de;
+  background: white;
+  color: #2b2b2b;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.showcase .blazers-btn:hover,
+.showcase .blazers-btn.active {
+  background: #2b5d8c;
+  color: white;
+  border-color: #2b5d8c;
+}
+
+.showcase .blazers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.showcase .blazers-card {
+  background: white;
+  border: 1px solid #e2e6eb;
+  border-radius: 10px;
+  padding: 14px 10px;
+  text-align: center;
+  min-width: 0;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.showcase .blazers-card.winner {
+  border: 2px solid #2b5d8c;
+  background: #f0f6fb;
+  transform: translateY(-3px);
+}
+
+.showcase .blazers-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+  background: #2b5d8c;
+  color: white;
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 9px;
+}
+
+.showcase .blazers-name {
+  font-size: clamp(12px, 2vw, 17px);
+  font-weight: bold;
+  min-height: 36px;
+}
+
+.showcase .blazers-years {
+  color: #777;
+  font-size: 11px;
+  margin: 4px 0 12px;
+}
+
+.showcase .blazers-stat {
+  font-size: clamp(23px, 4vw, 35px);
+  font-weight: bold;
+  color: #2b5d8c;
+  font-variant-numeric: tabular-nums;
+}
+
+.showcase .blazers-stat-label {
+  color: #666;
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.showcase .blazers-bar-track {
+  height: 7px;
+  border-radius: 10px;
+  background: #e5eaf0;
+  margin: 14px 0;
+  overflow: hidden;
+}
+
+.showcase .blazers-bar {
+  height: 100%;
+  background: #2b5d8c;
+  border-radius: 10px;
+  width: 0;
+  transition: width 0.5s ease;
+}
+
+.showcase .blazers-details {
+  border-top: 1px solid #e6e6e6;
+  padding-top: 10px;
+  display: grid;
+  gap: 7px;
+  font-size: 11px;
+}
+
+.showcase .blazers-detail {
+  display: flex;
+  justify-content: space-between;
+  gap: 3px;
+}
+
+.showcase .blazers-detail span:last-child {
+  font-weight: bold;
+}
+
+.showcase .blazers-footer {
+  margin-top: 13px;
+  text-align: center;
+  font-size: 11px;
+  color: #555;
+  min-height: 16px;
+}
+
+.showcase .blazers-note {
+  text-align: center;
+  color: #888;
+  font-size: 10px;
+  margin-top: 8px;
+}
+
+@media (max-width: 480px) {
+  .showcase .blazers-widget {
+    padding: 12px 7px;
+  }
+
+  .showcase .blazers-grid {
+    gap: 5px;
+  }
+
+  .showcase .blazers-card {
+    padding: 11px 5px;
+  }
+
+  .showcase .blazers-btn {
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+
+  .showcase .blazers-details {
+    font-size: 10px;
+  }
+
+  .showcase .blazers-years {
+    font-size: 10px;
+  }
+}
+</style>
+
+<!-- HTML: Three player cards and interactive stat selectors -->
+<section class="blazers-widget" aria-label="Blazers legends comparison">
+  <div class="blazers-heading">Portland's Greatest Three</div>
+  <div class="blazers-subtitle">
+    Three legends. Three eras. One franchise.
+  </div>
+
+  <div class="blazers-controls" role="group" aria-label="Compare statistics">
+    <button class="blazers-btn active" data-stat="points" aria-pressed="true">Points</button>
+    <button class="blazers-btn" data-stat="assists" aria-pressed="false">Assists</button>
+    <button class="blazers-btn" data-stat="rebounds" aria-pressed="false">Rebounds</button>
+    <button class="blazers-btn" data-stat="games" aria-pressed="false">Games</button>
+  </div>
+
+  <div class="blazers-grid">
+    <article class="blazers-card" data-player="drexler">
+      <div class="blazers-number">22</div>
+      <div class="blazers-name">Clyde Drexler</div>
+      <div class="blazers-years">1983–1995</div>
+      <div class="blazers-stat">18,040</div>
+      <div class="blazers-stat-label">Total Points</div>
+      <div class="blazers-bar-track">
+        <div class="blazers-bar"></div>
+      </div>
+      <div class="blazers-details">
+        <div class="blazers-detail"><span>PPG</span><span>20.8</span></div>
+        <div class="blazers-detail"><span>APG</span><span>5.7</span></div>
+        <div class="blazers-detail"><span>RPG</span><span>6.2</span></div>
+      </div>
+    </article>
+
+    <article class="blazers-card" data-player="lillard">
+      <div class="blazers-number">0</div>
+      <div class="blazers-name">Damian Lillard</div>
+      <div class="blazers-years">2012–2023*</div>
+      <div class="blazers-stat">19,376</div>
+      <div class="blazers-stat-label">Total Points</div>
+      <div class="blazers-bar-track">
+        <div class="blazers-bar"></div>
+      </div>
+      <div class="blazers-details">
+        <div class="blazers-detail"><span>PPG</span><span>25.2</span></div>
+        <div class="blazers-detail"><span>APG</span><span>6.7</span></div>
+        <div class="blazers-detail"><span>RPG</span><span>4.2</span></div>
+      </div>
+    </article>
+
+    <article class="blazers-card" data-player="walton">
+      <div class="blazers-number">32</div>
+      <div class="blazers-name">Bill Walton</div>
+      <div class="blazers-years">1974–1978</div>
+      <div class="blazers-stat">4,762</div>
+      <div class="blazers-stat-label">Total Points</div>
+      <div class="blazers-bar-track">
+        <div class="blazers-bar"></div>
+      </div>
+      <div class="blazers-details">
+        <div class="blazers-detail"><span>PPG</span><span>17.1</span></div>
+        <div class="blazers-detail"><span>APG</span><span>4.4</span></div>
+        <div class="blazers-detail"><span>RPG</span><span>13.5</span></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="blazers-footer" aria-live="polite"></div>
+  <div class="blazers-note">
+    Portland regular-season stats only. *Lillard's original Portland tenure through 2023.
+  </div>
+</section>
+
+<!-- JavaScript: Switches statistics, animates bars, and highlights the leader -->
+<script>
+(function () {
+  const root = document.currentScript.closest(".showcase");
+  if (!root) return;
+
+  // Portland-only regular-season totals through 2022-23 for Lillard.
+  const players = {
+    drexler: {
+      points: 18040,
+      assists: 4933,
+      rebounds: 5339,
+      games: 867
+    },
+    lillard: {
+      points: 19376,
+      assists: 5151,
+      rebounds: 3253,
+      games: 769
+    },
+    walton: {
+      points: 4762,
+      assists: 1238,
+      rebounds: 3751,
+      games: 209
+    }
+  };
+
+  const labels = {
+    points: "Total Points",
+    assists: "Total Assists",
+    rebounds: "Total Rebounds",
+    games: "Games Played"
+  };
+
+  const names = {
+    drexler: "Clyde Drexler",
+    lillard: "Damian Lillard",
+    walton: "Bill Walton"
+  };
+
+  const buttons = root.querySelectorAll(".blazers-btn");
+  const cards = root.querySelectorAll(".blazers-card");
+  const footer = root.querySelector(".blazers-footer");
+
+  function update(stat) {
+    const max = Math.max(
+      ...Object.values(players).map(player => player[stat])
+    );
+
+    let leader = "";
+
+    cards.forEach(card => {
+      const id = card.dataset.player;
+      const value = players[id][stat];
+      const percentage = (value / max) * 100;
+
+      card.querySelector(".blazers-stat").textContent =
+        value.toLocaleString("en-US");
+
+      card.querySelector(".blazers-stat-label").textContent =
+        labels[stat];
+
+      card.querySelector(".blazers-bar").style.width =
+        percentage + "%";
+
+      const isLeader = value === max;
+      card.classList.toggle("winner", isLeader);
+
+      if (isLeader) leader = names[id];
+    });
+
+    buttons.forEach(button => {
+      const active = button.dataset.stat === stat;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+
+    footer.textContent =
+      leader + " leads these three in " +
+      labels[stat].toLowerCase() + ".";
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      update(button.dataset.stat);
+    });
+  });
+
+  update("points");
+})();
+</script>
+</div>
 
 <!-- Footer: fill in your name -->
 <footer>Built by Ben Farrell &middot; BMIS 235</footer>
